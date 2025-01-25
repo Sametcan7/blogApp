@@ -1,13 +1,13 @@
 "use client";
 
 import { createContext, ReactNode, useContext, useState } from "react";
-import { Post } from "../types";
 import data from "../database/dummy.json";
+import { PostType } from "../types";
 
 export const categories = ["sanat", "bilim", "teknoloji", "felsefe"];
 
 type FilterType = {
-  posts: Post[];
+  posts: PostType[];
   searchParam: string;
   setSearchParam: React.Dispatch<React.SetStateAction<string>>;
   filters: string[];
@@ -25,8 +25,8 @@ export function FilterContextsProvider({ children }: { children: ReactNode }) {
       ? post.title.toLowerCase().includes(searchParam) && // Başlıkta ara
         filters.includes(post.category) // Seçili kategoride ara
       : true && filters.length > 0 // Seçili kategori varsa
-      ? filters.includes(post.category)
-      : false
+        ? filters.includes(post.category)
+        : false,
   );
 
   return (
