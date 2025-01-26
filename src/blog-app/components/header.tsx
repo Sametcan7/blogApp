@@ -2,22 +2,24 @@ import Link from "next/link";
 
 export default function Header() {
   return (
-    <div className="relative flex items-center justify-between px-14 py-8">
+    <div className="relative flex items-center justify-between border-b-2 border-backGroundActiveBorder px-14 py-8 shadow-lg shadow-backGroundActive">
       <Link
         href="/"
-        className="text-2xl font-extrabold border-t-2  hover:border-r-2 hover:border-l-2 hover:mx-[-2px] border-b-2 hover:bg-blue-200 p-2 transition-colors hover:duration-200 hover:border-t-0 hover:border-b-0 active:text-white active:bg-blue-700 border-blue-700  text-blue-800"
+        className="border-b-2 border-t-2 border-blue-700 p-2 text-2xl font-extrabold text-blue-800 transition-colors hover:mx-[-2px] hover:border-b-0 hover:border-l-2 hover:border-r-2   hover:border-t-0 hover:bg-blue-200 hover:duration-200 active:bg-blue-700 active:text-white"
       >
         BLOG APP
       </Link>
-      <div className=" absolute left-[50%] translate-x-[-50%] flex gap-8 text-gray-600 text-xl">
-        <p>Services</p>
-        <p>Creative Studio</p>
-        <p>Blog</p>
-        <p>About Us</p>
+      <div className="absolute left-[50%] flex translate-x-[-50%] gap-8 text-xl text-gray-600">
+        <Link href="/category/sanat"> Sanat</Link>
+        <Link href="/category/bilim">Bilim</Link>
+        <Link href="/category/teknoloji">Teknoloji</Link>
+        <Link href="/category/felsefe">Felsefe</Link>
       </div>
       <div className="flex items-center">
-        <span className="material-symbols-outlined mr-4">language</span>
-        <button className="p-4 bg-blue-400   rounded-full text-white text-lg">
+        <span className="material-symbols-outlined mr-4 text-textSecondary">
+          language
+        </span>
+        <button className="rounded-full bg-blue-400 p-4 text-lg text-white">
           Contact us
         </button>
       </div>

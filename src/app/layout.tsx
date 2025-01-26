@@ -4,7 +4,6 @@ import { Roboto_Condensed } from "next/font/google";
 import { FilterContextsProvider } from "@/blog-app/context/filterContext";
 import Header from "@/blog-app/components/header";
 import Footer from "@/blog-app/components/footer";
-import Author from "@/blog-app/ui/author";
 
 const roboto = Roboto_Condensed({ subsets: ["latin"] });
 
@@ -21,7 +20,6 @@ export default function RootLayout({
     <html className={roboto.className} lang="en">
       <body className="mx-auto min-h-screen max-w-[1600px] bg-blue-50">
         <FilterContextsProvider>
-          <Author />
           <Header />
           {children}
           <Footer />

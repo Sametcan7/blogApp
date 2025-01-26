@@ -6,6 +6,14 @@ import philosophy from "../images/philosophy.jpg";
 import { PostType } from "../types";
 import Link from "next/link";
 import { twMerge } from "tailwind-merge";
+import dynamic from "next/dynamic";
+import { Users } from "../context/filterContext";
+// import Author from "./author";
+
+const Author = dynamic(() => import("./author"), {
+  ssr: false,
+  loading: () => <Loading />,
+});
 
 type LinkForImageProps = {
   children: React.ReactNode;
@@ -17,13 +25,21 @@ type PostContentProps = {
   post: PostType;
   className?: string;
   width?: string;
+  contentClass?: string;
+  author?: Users;
 };
 
-export function Post({ post, className, width }: PostContentProps) {
+export function Post({
+  post,
+  author,
+  className,
+  contentClass,
+  width,
+}: PostContentProps) {
   return (
     <div
       className={twMerge(
-        "hover:border-backGroundHoverBorder hover:bg-backGroundHover hover:shadow-backGroundActive active:bg-backGroundActive active:border-backGroundActiveBorder group rounded-3xl p-4 transition-colors duration-300 hover:m-[-1px] hover:border hover:shadow-xl",
+        "group rounded-3xl p-4 transition-colors duration-300 hover:m-[-1px] hover:border hover:border-backGroundHoverBorder hover:bg-backGroundHover hover:shadow-xl hover:shadow-backGroundActive active:border-backGroundActiveBorder active:bg-backGroundActive",
         className,
       )}
       key={post.id}
@@ -31,7 +47,7 @@ export function Post({ post, className, width }: PostContentProps) {
       <LinkForImage width={width} postId={post.id}>
         <PostImage category={post.category} />
       </LinkForImage>
-      <PostContent className="mt-4 px-6" post={post} />
+      <PostContent contentClass={contentClass} author={author} post={post} />
     </div>
   );
 }
@@ -54,16 +70,23 @@ export function PostImage({ category }: { category: string }) {
   );
 }
 
-export function PostContent({ post, className }: PostContentProps) {
+export function PostContent({ post, author, contentClass }: PostContentProps) {
   return (
-    <div className={className}>
-      <Link href={`/category/${post.category}`}>
-        <p className="text-textLink mb-2 inline-block rounded-lg text-lg first-letter:uppercase group-hover:underline">
-          {post.category}
+    <div className={` ${contentClass ? contentClass : "mt-4"} px-6`}>
+      <div>
+        <Link href={`/category/${post.category}`}>
+          <p className="mb-2 inline-block rounded-lg text-lg text-textLink first-letter:uppercase group-hover:underline">
+            {post.category}
+          </p>
+        </Link>
+        <p className="mb-2 text-2xl font-bold text-textSecondary">
+          {post.title}
         </p>
-      </Link>
-      <p className="text-textSecondary mb-2 text-2xl font-bold">{post.title}</p>
-      <p className="text-textPrimary text-lg">{post.description}</p>
+        <p className="text-lg text-textPrimary">{post.description}</p>
+      </div>
+      <div>
+        <Author author={author} />
+      </div>
     </div>
   );
 }
@@ -78,5 +101,15 @@ function LinkForImage({ children, postId, width }: LinkForImageProps) {
       </span>
       {children}
     </Link>
+  );
+}
+
+function Loading() {
+  return (
+    <div className="flex h-full w-full items-center p-4">
+      <span className="material-symbols-outlined animate-spin text-4xl text-blue-700">
+        sync
+      </span>
+    </div>
   );
 }

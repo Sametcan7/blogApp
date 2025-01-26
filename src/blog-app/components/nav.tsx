@@ -8,7 +8,7 @@ export default function Nav() {
       <Banner />
       <div className="relative">
         <CategoryNav />
-        <SearchInput />
+        <SearchInput className="absolute rounded-lg left-[50%] top-[0] mx-auto translate-x-[-50%] translate-y-[-75%] focus-within:shadow-lg focus-within:shadow-black" />
       </div>
     </>
   );

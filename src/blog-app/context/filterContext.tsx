@@ -3,10 +3,17 @@
 import { createContext, ReactNode, useContext, useState } from "react";
 import data from "../database/dummy.json";
 import { PostType } from "../types";
+import { faker } from "@faker-js/faker";
 
-export const categories = ["sanat", "bilim", "teknoloji", "felsefe"];
+export type Users = {
+  firstName: string;
+  lastName: string;
+  avatar: string;
+  registeredAt: Date;
+};
 
 type FilterType = {
+  users: Users[];
   posts: PostType[];
   searchParam: string;
   setSearchParam: React.Dispatch<React.SetStateAction<string>>;
@@ -14,6 +21,22 @@ type FilterType = {
   setFilters: React.Dispatch<React.SetStateAction<string[]>>;
 };
 
+export function createRandomUser() {
+  return {
+    firstName: faker.person.firstName(),
+    lastName: faker.person.lastName(),
+    avatar: faker.image.avatar(),
+
+    registeredAt: faker.date.past(),
+  };
+}
+
+export const users = faker.helpers.multiple(createRandomUser, {
+  count: 93,
+});
+
+ 
+export const categories = ["sanat", "bilim", "teknoloji", "felsefe"];
 export const FilterContext = createContext<FilterType | null>(null);
 
 export function FilterContextsProvider({ children }: { children: ReactNode }) {
@@ -31,7 +54,7 @@ export function FilterContextsProvider({ children }: { children: ReactNode }) {
 
   return (
     <FilterContext.Provider
-      value={{ posts, filters, setFilters, searchParam, setSearchParam }}
+      value={{ users, posts, filters, setFilters, searchParam, setSearchParam }}
     >
       {children}
     </FilterContext.Provider>
@@ -42,7 +65,7 @@ export function useFilterContext() {
   const context = useContext(FilterContext);
 
   if (!context) throw Error("Context Have To Use In Context Provider");
-  const { posts, filters, setFilters, searchParam, setSearchParam } = context;
+  const { users,posts, filters, setFilters, searchParam, setSearchParam } = context;
 
-  return { posts, filters, setFilters, searchParam, setSearchParam };
+  return { users,posts, filters, setFilters, searchParam, setSearchParam };
 }
