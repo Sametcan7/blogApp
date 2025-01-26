@@ -3,11 +3,17 @@
 import { categories, useFilterContext } from "../context/filterContext";
 import UpperCase from "../utils/upperCase";
 
+const buttonClass = [
+  "hover:bg-buttonCancelHover active:bg-buttonCancelActive border-blue-800 bg-buttonSelected text-white hover:text-white",
+  "hover:bg-buttonHover active:bg-buttonActive",
+  "active:border-button text-textSecondary rounded-2xl shadow-xl shadow-backGroundActive  active:text-white border border-blue-700 px-8 py-2 transition-all hover:text-black",
+];
+
 export default function CategoryNav() {
   const { filters, setFilters } = useFilterContext();
 
   const checkBoxHandler = (
-    e: React.MouseEvent<HTMLInputElement, MouseEvent>
+    e: React.MouseEvent<HTMLInputElement, MouseEvent>,
   ) => {
     const cat = e.currentTarget.value;
     return filters.includes(cat)
@@ -16,15 +22,17 @@ export default function CategoryNav() {
   };
 
   const selectAll = () =>
-    filters.length >= 4 ? setFilters([]) : setFilters(categories);
+    filters.length === categories.length
+      ? setFilters([])
+      : setFilters(categories);
+
   return (
-    <div className=" flex justify-center text-gray-600 text-lg gap-14 pt-16 pb-8 ">
+    <div className="flex justify-center gap-14 pb-8 pt-16 text-lg text-gray-600">
       <button
         onClick={() => selectAll()}
         className={`${
-          (filters.length === 6 || filters.length >= 4) &&
-          "bg-blue-800 text-white hover:text-white hover:bg-red-500 "
-        }  text-gray-600 px-8 py-2 rounded-2xl hover:bg-blue-500 hover:text-black border border-blue-700 transition-all  hover:border-blue-500 active:border-blue-800`}
+          filters.length === categories.length ? buttonClass[0] : buttonClass[1]
+        } ${buttonClass[2]} `}
       >
         Hepsi
       </button>
@@ -32,10 +40,10 @@ export default function CategoryNav() {
       {categories.map((cat) => (
         <label
           className={`${
-            (filters.includes(cat) || filters.length >= 4) &&
-            "bg-blue-500 hover:bg-red-500 hover:text-white text-white"
-          } 
-          flex items-center hover:bg-blue-300 hover:text-black border border-blue-300 transition-all  hover:border-blue-500 active:border-blue-800 px-8 py-2 rounded-2xl cursor-pointer`}
+            filters.includes(cat) || filters.length === categories.length
+              ? buttonClass[0]
+              : buttonClass[1]
+          } ${buttonClass[2]} cursor-pointer  select-none`}
           key={cat}
         >
           {UpperCase(cat)}
@@ -45,6 +53,7 @@ export default function CategoryNav() {
             value={cat}
             onClick={(e) => checkBoxHandler(e)}
           />
+          <button></button>
         </label>
       ))}
     </div>

@@ -17,7 +17,7 @@ export default function Header() {
       </div>
       <div className="flex items-center">
         <span className="material-symbols-outlined mr-4">language</span>
-        <button className="p-4 bg-blue-400 rounded-full text-white text-lg">
+        <button className="p-4 bg-blue-400   rounded-full text-white text-lg">
           Contact us
         </button>
       </div>

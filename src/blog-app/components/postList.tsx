@@ -10,10 +10,10 @@ export default function PostList() {
         <div className="grid auto-rows-auto grid-cols-3 gap-8 pb-20">
           {posts.map((post, index) =>
             filters.length >= categories.length && index === 0 ? (
-              <div className="col-[1/-1]" key={post.id}>
+              <div className="col-[1/-1] mb-12 mt-4" key={post.id}>
                 <Post
                   post={post}
-                  className="mb-12 mt-4 flex gap-8 p-[16px] duration-150"
+                  className=" flex gap-8 p-[16px] duration-150"
                   width="w-1/2"
                 />
               </div>

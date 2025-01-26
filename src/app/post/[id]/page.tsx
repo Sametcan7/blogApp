@@ -7,11 +7,11 @@ export default function Post({ params }: { params: { id: string } }) {
   if (!post) return <div>No Post Found </div>;
 
   return (
-    <div className="flex gap-3 mx-16 py-4">
+    <div className="py-20 flex gap-3 mx-16  ">
       <div className="w-1/2">
         <PostImage category={post[0].category} />
       </div>
-      <div className="w-1/2">
+      <div className="w-1/2 group">
         <PostContent post={post[0]} />
       </div>
     </div>

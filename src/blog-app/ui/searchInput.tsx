@@ -15,10 +15,10 @@ export default function SearchInput() {
       />
       {searchParam.length > 0 && (
         <button
-          className="flex items-center"
+          className="flex justify-center items-center hover:bg-red-400 rounded-full active:text-white active:bg-red-500 transition-all duration-100 hover:scale-125"
           onClick={() => setSearchParam("")}
         >
-          <span className="material-symbols-outlined">close</span>
+          <span className="material-symbols-outlined ">close</span>
         </button>
       )}
     </label>

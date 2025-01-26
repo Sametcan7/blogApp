@@ -23,7 +23,7 @@ export function Post({ post, className, width }: PostContentProps) {
   return (
     <div
       className={twMerge(
-        "group rounded-3xl p-4 transition-all duration-200 ease-out hover:border hover:border-blue-200 hover:bg-blue-100 hover:shadow-xl hover:shadow-blue-200 active:border-blue-800 active:bg-blue-300",
+        "hover:border-backGroundHoverBorder hover:bg-backGroundHover hover:shadow-backGroundActive active:bg-backGroundActive active:border-backGroundActiveBorder group rounded-3xl p-4 transition-colors duration-300 hover:m-[-1px] hover:border hover:shadow-xl",
         className,
       )}
       key={post.id}
@@ -57,22 +57,23 @@ export function PostImage({ category }: { category: string }) {
 export function PostContent({ post, className }: PostContentProps) {
   return (
     <div className={className}>
-      <p className="mb-2 text-lg text-blue-500 first-letter:uppercase">
-        {post.category}
-      </p>
-      <p className="mb-2 text-2xl font-bold text-blue-950">{post.title}</p>
-      <p className="text-lg text-gray-600">{post.description}</p>
+      <Link href={`/category/${post.category}`}>
+        <p className="text-textLink mb-2 inline-block rounded-lg text-lg first-letter:uppercase group-hover:underline">
+          {post.category}
+        </p>
+      </Link>
+      <p className="text-textSecondary mb-2 text-2xl font-bold">{post.title}</p>
+      <p className="text-textPrimary text-lg">{post.description}</p>
     </div>
   );
 }
 
 function LinkForImage({ children, postId, width }: LinkForImageProps) {
   return (
-    <Link
-      className={`${width && width} relative `}
-      href={`/post/${postId}`}
-    >
-      <span className="material-symbols-outlined absolute left-1/2 top-1/2 z-10 hidden -translate-x-1/2 -translate-y-1/2 text-9xl text-blue-800 group-hover:block">
+    <Link className={`${width && width} relative`} href={`/post/${postId}`}>
+      <span
+        className={`${width === "w-[200px]" ? "text-6xl" : "text-9xl"} material-symbols-outlined absolute left-1/2 top-1/2 z-10 hidden -translate-x-1/2 -translate-y-1/2 text-blue-800 group-hover:block`}
+      >
         highlight_mouse_cursor
       </span>
       {children}

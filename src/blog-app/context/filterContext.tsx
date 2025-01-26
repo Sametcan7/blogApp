@@ -41,7 +41,7 @@ export function FilterContextsProvider({ children }: { children: ReactNode }) {
 export function useFilterContext() {
   const context = useContext(FilterContext);
 
-  if (!context) throw Error("Context Have To Use In Provider");
+  if (!context) throw Error("Context Have To Use In Context Provider");
   const { posts, filters, setFilters, searchParam, setSearchParam } = context;
 
   return { posts, filters, setFilters, searchParam, setSearchParam };
