@@ -35,7 +35,7 @@ export function Post({
   return (
     <div
       className={twMerge(
-        `${className} ${contentClass ? "max-md:mx-1 max-sm:flex-col max-md:items-center" : "max-md:mx-8"} ${className === "flex gap-8 p-[16px] duration-150" && "max-md:w-fit max-md:flex-col max-md:items-center max-md:bg-backGroundHover"} "group xl:p-4" rounded-3xl p-2 transition-colors duration-300 hover:m-[-1px] hover:border hover:border-backGroundHoverBorder hover:bg-backGroundHover hover:shadow-xl hover:shadow-backGroundActive active:border-backGroundActiveBorder active:bg-backGroundActive  `,
+        `${className} ${contentClass ? "max-md:mx-1 max-md:items-center max-sm:flex-col" : "max-md:mx-8"} ${className === "flex gap-8 p-[16px] duration-150" && "max-md:w-fit max-md:flex-col max-md:items-center max-md:bg-backGroundHover"} "group xl:p-4" group rounded-3xl p-2 transition-colors duration-300 hover:m-[-1px] hover:border hover:border-backGroundHoverBorder hover:bg-backGroundHover hover:shadow-xl hover:shadow-backGroundActive active:border-backGroundActiveBorder active:bg-backGroundActive`,
       )}
       key={post.id}
     >
@@ -85,7 +85,7 @@ export function PostContent({ post, contentClass }: PostContentProps) {
     </div>
   );
 }
-
+//
 function LinkForImage({ children, postId, type }: LinkForImageProps) {
   return (
     <Link
