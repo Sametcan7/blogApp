@@ -14,8 +14,11 @@ export default function SearchInput({ className, type }: SearchInputProps) {
   const { posts, searchParam, setSearchParam, setFilters } = useFilterContext();
 
   useEffect(() => {
-    if (type === "portable") setFilters(categories);
-  }, [type, setFilters]);
+    if (type === "portable") {
+      setSearchParam("");
+      setFilters(categories);
+    }
+  }, [type, setFilters, setSearchParam]);
 
   return (
     <div>
