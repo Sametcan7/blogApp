@@ -1,7 +1,7 @@
 # Blog App
 
-**Not: tam deneyim için projeyi localde çalıştırmak gerekmektedir. Kullanılan FakerApi trial versiyon olduğundan dolayı resimler yüklenmemektedir.**
-
+ `Not: Tam deneyim için projeyi localde çalıştırmak gerekmektedir(veya aşağıdaki görselleri inceleyebilirsiniz). Kullanılan FakerApi trial versiyon olduğundan dolayı resimler yüklenmemektedir.`   
+ 
 Bu proje, Next.js ve Tailwind CSS kullanılarak geliştirilmiş bir blog uygulamasıdır. Uygulama, blog postlarını görüntüleme, filtreleme ve arama gibi işlevsellikler sunar.
 
 ## Canlı Demo
