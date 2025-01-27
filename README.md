@@ -24,7 +24,7 @@ Projeyi kendi bilgisayarınızda çalıştırmak için aşağıdaki adımları t
     ```
 2. **Proje dizinine gidin**:
     ```bash
-    cd blog-app
+    cd blogApp
     ```
 3. **Gerekli bağımlılıkları yükleyin**:
     ```bash
