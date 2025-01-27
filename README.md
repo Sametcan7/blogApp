@@ -36,3 +36,11 @@ Projeyi kendi bilgisayarınızda çalıştırmak için aşağıdaki adımları t
     ```
 
 5. [http://localhost:3000](http://localhost:3000) adresinden uygulamayı görüntüleyebilirsiniz.
+
+6. **Görseller**:
+
+![1](https://github.com/user-attachments/assets/09636769-6e01-489b-af23-fee45e12f63e)
+![2](https://github.com/user-attachments/assets/e3fc5d74-03aa-4162-a3f4-1df189877043)
+![3](https://github.com/user-attachments/assets/22eef64a-66b0-4de4-a9a5-043a523bf649)
+![4](https://github.com/user-attachments/assets/0b1e3294-ee41-4bdf-872a-15f33fbc05ff)
+
