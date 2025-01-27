@@ -1,8 +1,9 @@
 "use client";
 import { twMerge } from "tailwind-merge";
-import { useFilterContext } from "../context/filterContext";
+import { categories, useFilterContext } from "../context/filterContext";
 import { PostImage } from "./post";
 import Link from "next/link";
+import { useEffect } from "react";
 
 type SearchInputProps = {
   className?: string;
@@ -10,13 +11,17 @@ type SearchInputProps = {
 };
 
 export default function SearchInput({ className, type }: SearchInputProps) {
-  const { posts, searchParam, setSearchParam } = useFilterContext();
+  const { posts, searchParam, setSearchParam, setFilters } = useFilterContext();
+
+  useEffect(() => {
+    if (type === "portable") setFilters(categories);
+  }, [type, setFilters]);
 
   return (
     <div>
       <label
         className={twMerge(
-          "relative z-50 flex h-16 w-[300px] md:w-[500px] items-center rounded-t-lg border-2 bg-white px-4 text-xl focus-within:border-blue-900",
+          "relative z-50 flex h-16 w-[300px] items-center rounded-t-lg border-2 bg-white px-4 text-xl focus-within:border-blue-900 md:w-[500px]",
           className,
         )}
       >
@@ -38,7 +43,7 @@ export default function SearchInput({ className, type }: SearchInputProps) {
       </label>
 
       {searchParam && type === "portable" && (
-        <div className="absolute max-h-[400px] w-[300px] md:w-[500px] overflow-y-scroll rounded-b-lg border border-backGroundActive bg-buttonActiveHover p-1 shadow-lg shadow-black">
+        <div className="absolute max-h-[400px] w-[300px] overflow-y-scroll rounded-b-lg border border-backGroundActive bg-buttonActiveHover p-1 shadow-lg shadow-black md:w-[500px]">
           {posts.map(
             (post) =>
               posts.length > 0 && (
