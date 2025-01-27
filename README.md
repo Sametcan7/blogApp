@@ -2,7 +2,9 @@
 
 Bu proje, Next.js ve Tailwind CSS kullanılarak geliştirilmiş bir blog uygulamasıdır. Uygulama, blog postlarını görüntüleme, filtreleme ve arama gibi işlevsellikler sunar.
 
-## Canlı demo: blogapp-murex-nu.vercel.app
+## Canlı Demo
+
+Uygulamayı canlı olarak deneyimlemek için [buraya tıklayın](https://blogapp-murex-nu.vercel.app).
 
 ## Özellikler
 
