@@ -38,7 +38,7 @@ export default function SearchInput({ className, type }: SearchInputProps) {
       </label>
 
       {searchParam && type === "portable" && (
-        <div className="absolute max-h-[400px] w-[300px] overflow-y-scroll rounded-b-lg border border-backGroundActive bg-buttonActiveHover p-1 shadow-lg shadow-black">
+        <div className="absolute max-h-[400px] w-[300px] md:w-[500px] overflow-y-scroll rounded-b-lg border border-backGroundActive bg-buttonActiveHover p-1 shadow-lg shadow-black">
           {posts.map(
             (post) =>
               posts.length > 0 && (
