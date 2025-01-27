@@ -8,12 +8,12 @@ export default function Category({ params }: { params: { category: string } }) {
   return (
     <div>
       {posts.map((post) => (
-        <div className="mx-8 my-4" key={post.id}>
+        <div className="mx-2 md:mx-8 my-4" key={post.id}>
           <Post
             post={post}
             contentClass="flex justify-between w-full items-center"
             className="flex"
-            width="w-[200px]"
+            type="category"
           />
         </div>
       ))}

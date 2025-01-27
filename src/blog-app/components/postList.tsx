@@ -3,27 +3,24 @@ import { categories, useFilterContext } from "../context/filterContext";
 import { Post } from "../ui/post";
 
 export default function PostList() {
-  const { users, filters, posts } = useFilterContext();
-  console.log(users);
-  console.log(posts);
+  const { filters, posts } = useFilterContext();
 
   return (
-    <div className="mx-14 min-h-screen">
+    <div className="mx-2 min-h-screen xl:mx-14">
       {posts.length >= 1 ? (
-        <div className="grid auto-rows-auto grid-cols-3 gap-8 pb-20">
+        <div className="grid auto-rows-auto grid-cols-1 gap-2 pb-20 md:grid-cols-2 lg:grid-cols-3 xl:gap-8">
           {posts.map((post, index) =>
-            filters.length >= categories.length && index === 999 ? (
+            filters.length >= categories.length && index === 0 ? (
               <div className="col-[1/-1] mb-12 mt-4" key={post.id}>
                 <Post
                   post={post}
                   className="flex gap-8 p-[16px] duration-150"
-                  width="w-1/2"
-                  author={users[Number(post.id) - 1]}
+                  type="main"
                 />
               </div>
             ) : (
               <div key={post.id}>
-                <Post author={users[Number(post.id) - 1]} post={post} />
+                <Post post={post} />
               </div>
             ),
           )}

@@ -16,7 +16,7 @@ export default function SearchInput({ className, type }: SearchInputProps) {
     <div>
       <label
         className={twMerge(
-          "relative z-50 flex h-16 w-[500px] items-center rounded-t-lg border-2 bg-white px-4 text-xl focus-within:border-blue-900",
+          "relative z-50 flex h-16 w-[300px] md:w-[500px] items-center rounded-t-lg border-2 bg-white px-4 text-xl focus-within:border-blue-900",
           className,
         )}
       >

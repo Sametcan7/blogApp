@@ -6,7 +6,7 @@ import UpperCase from "../utils/upperCase";
 const buttonClass = [
   "hover:bg-buttonCancelHover active:bg-buttonCancelActive border-blue-800 bg-buttonSelected text-white hover:text-white",
   "hover:bg-buttonHover active:bg-buttonActive",
-  "active:border-button text-textSecondary rounded-2xl shadow-xl shadow-backGroundActive  active:text-white border border-blue-700 px-8 py-2 transition-all hover:text-black",
+  "active:border-button text-textSecondary rounded-full shadow-xl shadow-backGroundActive  active:text-white border border-blue-700 px-8 py-2 transition-all hover:text-black",
 ];
 
 export default function CategoryNav() {
@@ -27,7 +27,7 @@ export default function CategoryNav() {
       : setFilters(categories);
 
   return (
-    <div className="flex justify-center gap-14 pb-8 pt-16 text-lg text-gray-600">
+    <div className="flex flex-wrap justify-center gap-2 pb-8 pt-16 text-lg text-gray-600 md:gap-14">
       <button
         onClick={() => selectAll()}
         className={`${
@@ -43,7 +43,7 @@ export default function CategoryNav() {
             filters.includes(cat) || filters.length === categories.length
               ? buttonClass[0]
               : buttonClass[1]
-          } ${buttonClass[2]} cursor-pointer  select-none`}
+          } ${buttonClass[2]} cursor-pointer select-none`}
           key={cat}
         >
           {UpperCase(cat)}

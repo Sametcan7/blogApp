@@ -7,8 +7,6 @@ import { PostType } from "../types";
 import Link from "next/link";
 import { twMerge } from "tailwind-merge";
 import dynamic from "next/dynamic";
-import { Users } from "../context/filterContext";
-// import Author from "./author";
 
 const Author = dynamic(() => import("./author"), {
   ssr: false,
@@ -18,36 +16,33 @@ const Author = dynamic(() => import("./author"), {
 type LinkForImageProps = {
   children: React.ReactNode;
   postId: string;
-  width?: string;
+  type?: string;
 };
 
 type PostContentProps = {
   post: PostType;
   className?: string;
-  width?: string;
+  type?: string;
   contentClass?: string;
-  author?: Users;
 };
 
 export function Post({
   post,
-  author,
   className,
   contentClass,
-  width,
+  type,
 }: PostContentProps) {
   return (
     <div
       className={twMerge(
-        "group rounded-3xl p-4 transition-colors duration-300 hover:m-[-1px] hover:border hover:border-backGroundHoverBorder hover:bg-backGroundHover hover:shadow-xl hover:shadow-backGroundActive active:border-backGroundActiveBorder active:bg-backGroundActive",
-        className,
+        `${className} ${contentClass ? "max-md:mx-1 max-sm:flex-col max-md:items-center" : "max-md:mx-8"} ${className === "flex gap-8 p-[16px] duration-150" && "max-md:w-fit max-md:flex-col max-md:items-center max-md:bg-backGroundHover"} "group xl:p-4" rounded-3xl p-2 transition-colors duration-300 hover:m-[-1px] hover:border hover:border-backGroundHoverBorder hover:bg-backGroundHover hover:shadow-xl hover:shadow-backGroundActive active:border-backGroundActiveBorder active:bg-backGroundActive  `,
       )}
       key={post.id}
     >
-      <LinkForImage width={width} postId={post.id}>
+      <LinkForImage type={type} postId={post.id}>
         <PostImage category={post.category} />
       </LinkForImage>
-      <PostContent contentClass={contentClass} author={author} post={post} />
+      <PostContent contentClass={contentClass} post={post} />
     </div>
   );
 }
@@ -70,7 +65,7 @@ export function PostImage({ category }: { category: string }) {
   );
 }
 
-export function PostContent({ post, author, contentClass }: PostContentProps) {
+export function PostContent({ post, contentClass }: PostContentProps) {
   return (
     <div className={` ${contentClass ? contentClass : "mt-4"} px-6`}>
       <div>
@@ -85,17 +80,20 @@ export function PostContent({ post, author, contentClass }: PostContentProps) {
         <p className="text-lg text-textPrimary">{post.description}</p>
       </div>
       <div>
-        <Author author={author} />
+        <Author />
       </div>
     </div>
   );
 }
 
-function LinkForImage({ children, postId, width }: LinkForImageProps) {
+function LinkForImage({ children, postId, type }: LinkForImageProps) {
   return (
-    <Link className={`${width && width} relative`} href={`/post/${postId}`}>
+    <Link
+      className={`${type === "main" && "w-full md:w-1/2"} ${type === "category" && "w-[200px]"} relative`}
+      href={`/post/${postId}`}
+    >
       <span
-        className={`${width === "w-[200px]" ? "text-6xl" : "text-9xl"} material-symbols-outlined absolute left-1/2 top-1/2 z-10 hidden -translate-x-1/2 -translate-y-1/2 text-blue-800 group-hover:block`}
+        className={`${type === "category" ? "text-6xl" : "text-9xl"} material-symbols-outlined absolute left-1/2 top-1/2 z-10 hidden -translate-x-1/2 -translate-y-1/2 text-blue-800 group-hover:block`}
       >
         highlight_mouse_cursor
       </span>
